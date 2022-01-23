@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { Button } from "antd";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./pages/login/login";
+import Admin from "./pages/admin/admin";
 import "antd/dist/antd.css";
 
 class App extends Component {
@@ -7,7 +9,12 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <Button type="primary">Primary Button</Button>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Admin />} />
+          </Routes>
+        </BrowserRouter>
       </React.Fragment>
     );
   }

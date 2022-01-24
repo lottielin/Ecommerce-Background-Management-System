@@ -7,15 +7,25 @@ import logo from "../../assets/images/logo.png";
 class Login extends Component {
   onFinish = (values) => {
     if (values) {
-      const username = values.username;
-      const password = values.password;
+      const { username, password } = values;
       console.log(
         `Submit ajax request, username ${username}, password ${password}`
       );
+
+      // API endpoint login
+      // login(username, password)
+      /* login(username, password)
+        .then(() => {
+          this.props.history.push("/admin");
+        })
+        .catch((err) => {
+          alert(err);
+        }); */
     } else {
       console.log("Validation failed");
     }
   };
+
   render() {
     return (
       <div className="login">

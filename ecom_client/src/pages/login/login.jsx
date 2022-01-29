@@ -15,8 +15,6 @@ class Login extends Component {
       reqLogin(username, password)
         .then((response) => {
           if (response.data.status === 0) {
-            const user = response.data;
-
             message.success("Login successful");
             console.log("Login successful", response.data);
             this.props.navigate("/");

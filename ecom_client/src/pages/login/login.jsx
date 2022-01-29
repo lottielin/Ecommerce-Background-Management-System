@@ -1,28 +1,37 @@
 import React, { Component } from "react";
-import { Form, Input, Icon, Button } from "antd";
-
+import { Form, Input, Icon, Button, message } from "antd";
+import { withRouter } from "../../withRouter";
+import { reqLogin } from "../../api";
 import "./login.less";
 import logo from "../../assets/images/logo.png";
 
 class Login extends Component {
-  onFinish = (values) => {
+  onFinish = async (values) => {
     if (values) {
       const { username, password } = values;
       console.log(
         `Submit ajax request, username ${username}, password ${password}`
       );
+      reqLogin(username, password)
+        .then((response) => {
+          if (response.data.status === 0) {
+            const user = response.data;
 
-      // API endpoint login
-      // login(username, password)
-      /* login(username, password)
-        .then(() => {
-          this.props.history.push("/admin");
+            message.success("Login successful");
+            console.log("Login successful", response.data);
+            this.props.navigate("/");
+          } else {
+            message.error(
+              "Login failed, please enter the correct username and password"
+            );
+          }
         })
         .catch((err) => {
-          alert(err);
-        }); */
+          message.error(err.message);
+        });
     } else {
       console.log("Validation failed");
+      alert("Username and password cannot be null!");
     }
   };
 
@@ -102,4 +111,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);

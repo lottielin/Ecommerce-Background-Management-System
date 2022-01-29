@@ -1,17 +1,17 @@
 import ajax from "./ajax";
 
-const HOST = "http://localhost:5000";
+const HOST = "http://localhost:5500";
 
 const getUrl = (url) => HOST + url;
 
 const reqLogin = (username, password) => {
-  let url = getUrl("login");
-  ajax(url, { username, password }, "POST");
+  let url = getUrl("/login");
+  return ajax(url, { username, password }, "POST");
 };
 
 const reqAddUser = (user) => {
   let url = getUrl("/manage/user/add");
-  ajax(url, user, "POST");
+  return ajax(url, user, "POST");
 };
 
 export { reqLogin, reqAddUser };
